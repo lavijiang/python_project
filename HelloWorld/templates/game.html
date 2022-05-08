@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <style type="text/css">
+    canvas{border:dashed 2px #CCC}
+  </style>
+  <script type="text/javascript">
+    function $$(id){
+      return document.getElementById(id);
+    }
+    function pageLoad(timedelta){
+      var can = $$('can');
+      var cans = can.getContext('2d');
+      cans.beginPath();
+      cans.arc(800,600,timedelta,0,Math.PI,true);
+      cans.closePath();
+      cans.fillStyle = 'green';//本来这里最初使用的是red，截图一看，傻眼了，怕上街被爱国者打啊，其实你懂的~~
+      cans.fill();
+    }
+	let last_timestamp = 0;
+	let AC_GAME_ANIMATION = function(timestamp) {
+		timedelta = timestamp - last_timestamp;
+        if(last_timestamp == 0){
+            last_timestamp = timestamp;
+        }
+		pageLoad(timedelta)
+		requestAnimationFrame(AC_GAME_ANIMATION);
+	}  
+	function render() {
+		requestAnimationFrame(AC_GAME_ANIMATION);
+	}
+  </script>
+  <body onload="render();">
+    <canvas id="can" width="1600px" height="1200px">4</canvas>
+  </body>
+</html>

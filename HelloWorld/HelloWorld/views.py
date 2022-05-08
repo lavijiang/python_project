@@ -12,4 +12,7 @@ def runoob2(request):
     return  render(request,"runoob2.html", {"name":views_name})
 
 def hello(request):
-    return HttpResponse("Hello world !")
+    return render(request, 'index.html')
+
+def game(request):
+    return render(request, 'game.html')
