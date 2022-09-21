@@ -19,3 +19,10 @@
 一套目录结构和其中的设置就是一个Django可识别的项目。
 应用指的就是一组Model（数据模型）、Views（视图）、Templates（模板）和URLs的集合。
 Django框架通过使用应用，为站点提供各种功能，应用还可以被复用在不同的项目中。你可以将一个项目理解为一个站点，站点中包含很多功能，比如博客，wiki，论坛，每一种功能都可以看作是一个应用。
+
+## 5. [csrf](https://www.youtube.com/watch?v=gEPii2y3ISQ)
+csrf防御
+- 尽量使用post
+- 加入验证码
+- 验证Referer
+- Anti CSRF Token

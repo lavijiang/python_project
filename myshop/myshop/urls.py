@@ -25,6 +25,7 @@ urlpatterns = [
     path('app1/', include('app1.urls')),
     path('app2/', include('app2.urls')),
     path('app3/', include('app3.urls')),
+    path('app5/', include('app5.urls')),
     re_path('media/(?P<path>.*)', serve, {"document_root":settings.MEDIA_ROOT}),
     re_path('static/(?P<path>.*)', serve, {"document_root":settings.STATIC_ROOT}),
 ]
