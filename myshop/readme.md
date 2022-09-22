@@ -26,3 +26,12 @@ csrf防御
 - 加入验证码
 - 验证Referer
 - Anti CSRF Token
+
+## 6. [ajax](https://www.runoob.com/php/php-ajax-intro.html)
+AJAX = Asynchronous JavaScript and XML.
+
+AJAX 是一种用于创建快速动态网页的技术。
+
+AJAX 通过在后台与服务器进行```少量数据```交换，使网页实现```异步更新```。这意味着可以在不重载整个页面的情况下，对网页的某些```部分进行更新```。
+
+传统的网页（不使用AJAX）如果需要更新内容，必须重载整个页面。
