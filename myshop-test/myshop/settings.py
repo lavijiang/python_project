@@ -81,11 +81,36 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'shop-test', #数据库名称
+        'USER':'root',
+        'PASSWORD':'123456',
+        'HOST':'localhost',
+        'PORT':'3306',
+        #取消外键约束
+        'OPTIONS':{
+            "init_command":"SET foreign_key_checks = 0;",
+        }
     }
 }
 
+LOGGING={
+    'version': 1,
+    'disable_existing_loggers':False,
+    'handlers':{
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+        },
+    },
+    'loggers':{
+        'django.db.backends':{
+            'handler':['console'],
+            'propagate':True,
+            'level':'DEBUG',
+        },    
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
