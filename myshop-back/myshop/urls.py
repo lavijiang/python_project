@@ -5,6 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('users/',include('apps.users.urls')),
     re_path('media/(?P<path>.*)', serve, {"document_root": settings.MEDIA_ROOT}),
     re_path('static/(?P<path>.*)', serve, {"document_root": settings.STATIC_ROOT}),
 ]
