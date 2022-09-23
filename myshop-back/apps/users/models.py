@@ -18,6 +18,7 @@ class MyUser(AbstractUser):
         (1,'异常'),
     )
 
+    id = models.AutoField(primary_key=True)
     truename=models.CharField('真实姓名',blank=True,max_length=50)
     nickname=models.CharField('昵称',blank=True,max_length=50)
     mobile=models.CharField('手机号码',max_length=11,default="")

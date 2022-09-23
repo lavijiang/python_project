@@ -14,7 +14,7 @@ def edit(request,id):
     return render(request,'shop/users/edit.html')
 
 def delete(request,id):
-    obj=MyUser.objects.get(users=id)
+    obj=MyUser.objects.get(id=id)
     obj.delete()
     json_dict={}
     json_dict["code"]=200
