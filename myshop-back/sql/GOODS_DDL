@@ -1,29 +1,36 @@
-DROP TABLE IF EXISTS D_GOODS;
-CREATE TABLE D_GOODS(
-    `ID` INT(10) NOT NULL   COMMENT '编号' ,
-    `NAME` VARCHAR(10)    COMMENT '商品名称' ,
-    `MARKET_PRICE` DECIMAL(8,2)    COMMENT '市场价' ,
-    `CATEGORY_ID` INT(10)    COMMENT '分类' ,
-    `PRICE` DECIMAL(8,2)    COMMENT '售价' ,
-    `UNIT` VARCHAR(10)    COMMENT '计量单位' ,
-    `AMOUNT` INT(10)    COMMENT '销售量' ,
-    `CLICK_NUM` INT(10)    COMMENT '点击量' ,
-    `FAV_NUM` INT(10)    COMMENT '收藏量' ,
-    `GOODS_DESC` VARCHAR(5000)    COMMENT '商品描述' ,
-    `MAIN_IMG` VARCHAR(100)    COMMENT '商品主图' ,
-    `STOCK_NUM` INT(10)    COMMENT '库存量' ,
-    `CREATEDATA` DATETIME    COMMENT '创建时间' ,
-    PRIMARY KEY (ID)
-)  COMMENT = '';
+DROP TABLE IF EXISTS d_goods;
+CREATE TABLE d_goods (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `market_price` decimal(8,2) NOT NULL,
+  `price` decimal(8,2) NOT NULL,
+  `unit` varchar(10) DEFAULT NULL,
+  `click_num` int NOT NULL,
+  `amount` int NOT NULL,
+  `stock_num` int NOT NULL,
+  `fav_num` int NOT NULL,
+  `status` int NOT NULL,
+  `main_img` varchar(100) DEFAULT NULL,
+  `is_recommend` tinyint(1) NOT NULL,
+  `createDate` datetime(6) NOT NULL,
+  `category_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `d_goods_category_id_18894d8a_fk_d_goods_category_id` (`category_id`),
+  CONSTRAINT `d_goods_category_id_18894d8a_fk_d_goods_category_id` FOREIGN KEY (`category_id`) REFERENCES `d_goods_category` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS D_GOODS_CATEGORY;
-CREATE TABLE D_GOODS_CATEGORY(
-    `ID` INT(10) NOT NULL   COMMENT '编号' ,
-    `NAME` VARCHAR(50)    COMMENT '分类名称' ,
-    `LEVEL` INT(10)    COMMENT '级别' ,
-    `PARENT_ID` INT(10)    COMMENT '父级ID' ,
-    `SORT` INT(10)    COMMENT '排序' ,
-    `CREATEDATE` DATETIME    COMMENT '创建时间' ,
-    PRIMARY KEY (ID)
+DROP TABLE IF EXISTS d_goods_category;
+CREATE TABLE d_goods_category(
+  `create_time` datetime(6) NOT NULL,
+  `update_time` datetime(6) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `logo` varchar(100) NOT NULL,
+  `is_nav` tinyint(1) NOT NULL,
+  `sort` int NOT NULL,
+  `parent_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `d_goods_category_parent_id_2e7771cf_fk_d_goods_category_id` (`parent_id`),
+  CONSTRAINT `d_goods_category_parent_id_2e7771cf_fk_d_goods_category_id` FOREIGN KEY (`parent_id`) REFERENCES `d_goods_category` (`id`)
 )  COMMENT = '';
 

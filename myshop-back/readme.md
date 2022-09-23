@@ -11,7 +11,8 @@
 </div>
 
 ## [mysql安装](https://www.runoob.com/mysql/mysql-install.html)
-mysql密码修改
+
+## mysql密码修改
 - 关闭服务   
 sudo service mysql stop
 - 修改文件  
@@ -27,3 +28,8 @@ flush privileges;
 - 关闭服务   
 - 删除my.cnf增加的内容
 - 启动
+
+## mysql执行ddl文件
+mysql -uroot -p123456 -Dshop <ddl文件
+
+## [重置数据文件](https://blog.csdn.net/zhuoxiuwu/article/details/52167599)
