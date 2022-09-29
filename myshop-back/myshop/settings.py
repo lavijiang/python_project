@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os,datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,9 +41,28 @@ INSTALLED_APPS = [
     'apps.goods',
     'apps.users',
     'apps.order',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_swagger',
+    'corsheaders',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_SCHEMA_CLASS':'rest_framework.schemas.coreapi.AutoSchema',
+}
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA':datetime.timedelta(days=3), #过期时间为3天
+    'JWT_AUTH_HEADER_PREFIX':'JWT',
+    'JWT_ALLOW_REFRESH':False,
+}
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,6 +71,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOW_CREDENTIALS = True  #允许跨域时携带cookie，默认为False
+CORS_ORIGIN_ALLOW_ALL = True  #指定所有域名都可以访问后端接口，默认为False
 
 ROOT_URLCONF = 'myshop.urls'
 
